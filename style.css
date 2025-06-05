@@ -1,105 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body{
+:root {
+    --primary-color: #40bda0;
+    --secondary-color: #329b83;
+    --background-color: #1a1a1a;
+    --dice-color: #ffffff;
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+body {
     margin: 0;
     padding: 0;
-    background-color: #363636;
+    background: linear-gradient(135deg, var(--background-color), #2a2a2a);
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: var(--text-color);
 }
-#container{
+
+#container {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
+    padding: 20px;
+    box-sizing: border-box;
 }
-h1{
+
+h1 {
     width: 90%;
-    font-size: xxx-large;
-    margin: 0 auto 90px;
-    color: #40bda0;
+    font-size: 3.5rem;
+    margin: 0 auto 60px;
+    color: var(--primary-color);
     text-align: center;
     text-transform: capitalize;
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    font-weight: 600;
 }
-#container > div:first-of-type{
+
+#container > div:first-of-type {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 150px;
+    gap: 100px;
+    perspective: 1000px;
 }
-.dados{
+
+.dados {
     width: 200px;
     height: 200px;
-    border-radius: 5%;
-    box-shadow: 0 7px 20px rgba(54, 54, 54, 0.4);
+    border-radius: 20px;
+    background: var(--dice-color);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    background-color: #F4F4F4;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 
+        20px 20px 60px var(--shadow-color),
+        -20px -20px 60px rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
 }
-.circleDado{
-    width: 21px;
-    height: 21px;
-    background-color: #000;
+
+.dados:hover {
+    transform: translateY(-5px);
+}
+
+.circleDado {
+    width: 25px;
+    height: 25px;
+    background: var(--primary-color);
     margin: 0 auto;
     border-radius: 50%;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all 0.3s ease;
 }
-.scale{
-    -webkit-animation: transformer .5s ease-in;
-    animation: transformer .6s ease-in;
+
+.scale {
+    animation: diceRoll 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-@keyframes transformer {
-    from {
+
+@keyframes diceRoll {
+    0% {
         transform: rotate(0deg) scale(0.1);
+        opacity: 0;
     }
-    to {
+    50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
         transform: rotate(360deg) scale(1);
+        opacity: 1;
     }
 }
-.btn{
-    font-size: large;
-    margin: 100px 0 0;
+
+.btn {
+    font-size: 1.2rem;
+    margin: 60px 0 0;
     padding: 15px 45px;
     outline: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-}
-.btn-submit{
-    background-color: #329b83;
-    color: #FFF;
-    transition: .25s background-color, color;
-}
-.btn-submit:hover,
-.btn-submit:focus,
-.btn-submit:active{
-    background-color: #40bda0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
-@media (max-width: 576px) {
-    h1{
-        margin-bottom: 30px;
-        font-size: xx-large;
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
     }
+
     #container > div:first-of-type {
         flex-direction: column;
-        gap: 0;
+        gap: 40px;
     }
-    #container > div:last-of-type{
-        width: 100%;
-        text-align: center;
-    }
-    .dados{
+
+    .dados {
         width: 150px;
         height: 150px;
     }
-    #dado2{
-        margin-top: 40px;
+
+    .circleDado {
+        width: 20px;
+        height: 20px;
     }
-    .btn{
-        width: 90%;
-        margin: 50px auto 0;
-        padding: 15px 0;
+
+    .btn {
+        width: 80%;
+        max-width: 300px;
+        margin: 40px auto 0;
+        padding: 12px 30px;
+        font-size: 1rem;
     }
+}
+
+/* Efecto de brillo en los dados */
+.dados::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    pointer-events: none;
 }

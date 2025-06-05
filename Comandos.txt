@@ -1,0 +1,4 @@
+##Instalacion de las dependencias de python 
+pip install -r requirements.txt
+##Ejecucion de todo el sistema
+python server.py

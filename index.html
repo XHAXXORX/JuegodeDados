@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="robots" content="noindex, nofollow">
+        <meta name="description" content="Juego de dados interactivo con animaciones modernas">
 
         <title>Juego de dados</title>
 
@@ -14,7 +15,8 @@
 
         <div id="container">
             <h1>Juego de dados</h1>
-            <div>
+            
+            <div class="game-area">
                 <div class="dados" id="dado1">
                     <div class="circleDado"></div>
                     <div class="circleDado"></div>
@@ -31,8 +33,21 @@
                 </div>
             </div>
 
-            <div>
-                <button type="button" class="btn btn-submit" id="btn">Girar dados</button>
+            <div class="score-area">
+                <div class="current-score">
+                    <span>Puntuación actual:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="high-score">
+                    <span>Mejor puntuación:</span>
+                    <span id="highScore">0</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button type="button" class="btn" id="btn">
+                    <span class="btn-text">Girar dados</span>
+                </button>
             </div>
         </div>
 
